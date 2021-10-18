@@ -1,11 +1,18 @@
-package com.github.ludenus.qa.runner
+package com.github.ludenus.qa.runner.command
 
+import com.github.ludenus.qa.runner.JUnit5Runner
+import com.github.ludenus.qa.runner.RecursiveRun
+import com.github.ludenus.qa.runner.config.AppConfig
 import org.apache.logging.log4j.kotlin.logger
+import org.springframework.stereotype.Component
 import picocli.CommandLine
 import java.io.File
 import java.util.concurrent.Callable
 
-class CommandParse : Callable<Int> {
+
+@Component
+@CommandLine.Command(mixinStandardHelpOptions = true)
+class MainCommand(private val appConfig: AppConfig) : Callable<Int> {
 
     private val log = logger()
 
@@ -33,24 +40,12 @@ class CommandParse : Callable<Int> {
     )
     var token: String? = null
 
-//    @CommandLine.Parameters(paramLabel = "FILE", description = ["one ore more files"])
-//    lateinit var files: Array<File>
 
-    @CommandLine.Option(names = ["-h", "--help"], usageHelp = true, description = ["display help message"])
-    var helpRequested: Boolean = false;
-
-    override fun call(): Int {
-        println("~~~~~~~~~~~~~~~~~~~~~ check LOG_LEVEL: ${System.getenv("LOG_LEVEL")}")
-
-        log.warn { "check warn" }
-        log.info { "check info" }
-        log.debug { "check debug" }
-
-//        JUnit5Runner1.main(emptyArray())
-        JUnit5Runner().call()
-        println("~~~~~~~~~~~~~~~~~~~~~ done")
-
-        // TBD
-        return 0
+    override fun call(): Int = if (!RecursiveRun.isPerformed) {
+        JUnit5Runner(appConfig).call()
+    } else {
+        log.info { "prevent recursive run" }
+        0
     }
+
 }

@@ -1,0 +1,7 @@
+#spring:
+#  main:
+#    web-application-type: NONE
+
+app:
+  label: "test-label"
+  id: "f03fb187-1c23-42d9-9f77-4230c1da99e4"
