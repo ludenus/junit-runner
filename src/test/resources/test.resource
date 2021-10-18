@@ -1,0 +1,1 @@
+DO NOT REMOVE ! this file is used to lookup test resource folder in runtime
