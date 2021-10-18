@@ -54,11 +54,8 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api:2.14.1")
     implementation("org.apache.logging.log4j:log4j-core:2.14.1")
 
-
-//    implementation("info.picocli:picocli:4.6.1")
     kapt ("info.picocli:picocli-codegen:4.6.1")
     implementation("info.picocli:picocli-spring-boot-starter:4.6.1")
-    annotationProcessor("info.picocli:picocli-codegen:4.6.1")
 
     implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -70,7 +67,6 @@ dependencies {
     implementation("org.junit.platform:junit-platform-console:1.8.1")
     implementation("org.junit.platform:junit-platform-launcher:1.8.1")
 
-//    kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 
