@@ -1,5 +1,6 @@
 package com.github.ludenus.qa.runner
 
+import com.github.ludenus.qa.runner.config.AppConfig
 import org.apache.logging.log4j.kotlin.logger
 import org.junit.platform.console.options.CommandLineOptions
 import org.junit.platform.console.options.Details
@@ -11,14 +12,18 @@ import java.nio.file.Path
 import java.util.concurrent.Callable
 import kotlin.io.path.createTempDirectory
 
-class JUnit5Runner : Callable<Int> {
+
+class JUnit5Runner(private val appConfig: AppConfig) : Callable<Int> {
 
     private val log = logger()
     private val entrypointClass = MainApplication::class.java
     private val mainClasspath = resolveMainClasspath()
 
-    @Throws(Exception::class)
-    override fun call(): Int {
+
+    override fun call(): Int = execute()
+
+    fun execute(): Int {
+        log.info("~~~~~~~ JUnit5Runner appConfig: $appConfig")
         val options = options()
         val writer = PrintWriter(System.out)
         val results = ConsoleTestExecutor(options).execute(writer)
@@ -102,4 +107,12 @@ class JUnit5Runner : Callable<Int> {
         log.info("found : $resourceFile")
         return resourceFile.path
     }
+
+//    override fun run(vararg args: String?) {
+//        execute()
+//    }
+//
+//    override fun getExitCode(): Int {
+//        TODO("Not yet implemented")
+//    }
 }

@@ -2,4 +2,6 @@
 #  main:
 #    web-application-type: NONE
 
-
+app:
+  label: "main-label"
+  id: "ab0ec674-bffd-4917-a0a2-3baf680075dd"
