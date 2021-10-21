@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-allure-server"
+  labels:
+    release: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name }}"
+spec:
+  selector:
+    matchLabels:
+      release: "{{ .Release.Name }}"
+      chart: "{{ .Chart.Name }}"
+  replicas: {{ .Values.deployment.replicaCount }}
+  template:
+    metadata:
+      labels:
+        release: "{{ .Release.Name }}"
+        chart: "{{ .Chart.Name }}"
+    spec:
+      containers:
+        - name: "{{ .Release.Name }}-{{ .Chart.Name }}"
+          image: "{{ .Values.deployment.image }}:{{ .Values.deployment.version }}"
+          imagePullPolicy: IfNotPresent
+          resources:
+            {{- toYaml .Values.deployment.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.deployment.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.deployment.readinessProbe | nindent 12 }}
+          env:
+            {{- toYaml .Values.deployment.env | nindent 12 }}
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort }}

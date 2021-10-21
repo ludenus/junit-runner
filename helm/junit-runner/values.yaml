@@ -1,0 +1,33 @@
+
+pvc:
+  storage: "1Gi"
+
+job:
+  image: "ludenus/junit-runner"
+  version: "0.0.2-master-c928fe7"
+
+deployment:
+  replicaCount: 1
+  image: "kochetkovma/allure-server"
+  version: "2.8.3"
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "512Mi"
+  containerPort: 8080
+  livenessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 30
+    periodSeconds: 10
+service:
+  type: ClusterIP
+#  loadBalancerIP: "123.123.123.123"
+  port: 80
