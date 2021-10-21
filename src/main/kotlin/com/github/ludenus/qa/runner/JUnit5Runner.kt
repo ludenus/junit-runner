@@ -20,9 +20,7 @@ class JUnit5Runner(private val appConfig: AppConfig) : Callable<Int> {
     private val mainClasspath = resolveMainClasspath()
 
 
-    override fun call(): Int = execute()
-
-    fun execute(): Int {
+    override fun call(): Int {
         log.info("~~~~~~~ JUnit5Runner appConfig: $appConfig")
         val options = options()
         val writer = PrintWriter(System.out)

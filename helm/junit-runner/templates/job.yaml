@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-junit-runner"
+  labels:
+    release: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name }}"
+spec:
+  template:
+    spec:
+      containers:
+        - name: "junit-runner"
+          image: "{{ .Values.job.image }}:{{ .Values.job.version }}"
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never
+  backoffLimit: 1
