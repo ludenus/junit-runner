@@ -16,7 +16,11 @@ plugins {
     id("pl.allegro.tech.build.axion-release") version "1.11.0"
 
     id("com.google.cloud.tools.jib") version "3.1.4"
+
+    id("io.qameta.allure") version "2.9.6"
+
 }
+
 
 scmVersion {
     // https://axion-release-plugin.readthedocs.io/en/latest
@@ -63,6 +67,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
     implementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    implementation("io.qameta.allure:allure-junit5:2.15.0")
+
 
     implementation("org.junit.platform:junit-platform-console:1.8.1")
     implementation("org.junit.platform:junit-platform-launcher:1.8.1")
@@ -75,6 +81,29 @@ kapt {
 
     arguments {
         arg("project", "${project.group}/${project.name}")
+    }
+}
+
+
+allure {
+    adapter {
+        // Configure version for io.qameta.allure:allure-* adapters
+        allureJavaVersion.set("2.13.9")
+        aspectjVersion.set("1.9.5")
+
+        autoconfigure.set(true)
+        autoconfigureListeners.set(true)
+        aspectjWeaver.set(true)
+
+        frameworks {
+            junit5 {
+                // Defaults to allureJavaVersion
+//                adapterVersion.set("...")
+                enabled.set(true)
+                // Enables allure-junit4 default test listeners via META-INF/services/...
+                autoconfigureListeners.set(true)
+            }
+        }
     }
 }
 
