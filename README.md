@@ -6,6 +6,8 @@ Skeleton project for dockerized Kotlin JUnit 5 tests with:
 * picocli plugin for CLI interface
 * axion-release plugin for versioning
 * gradle-git-properties for accessing git info
+* allure report
+* helm deploy
 
 ## Run test OUTSIDE docker container
 
@@ -30,3 +32,7 @@ Skeleton project for dockerized Kotlin JUnit 5 tests with:
 ./gradlew clean build jib
 ```
 
+## deploy junit-runner job along with allure server 
+```shell
+helm upgrade --install junit-runner ./helm/junit-runner
+```
