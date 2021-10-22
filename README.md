@@ -1,5 +1,5 @@
 # junit-runner
-Skeleton project for dockerized JUnit 5 tests with:
+Skeleton project for dockerized Kotlin JUnit 5 tests with:
 * Springboot config
 * log4j logger
 * jib docker plugin
