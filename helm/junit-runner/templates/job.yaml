@@ -8,9 +8,16 @@ metadata:
 spec:
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: "junit-runner"
           image: "{{ .Values.job.image }}:{{ .Values.job.version }}"
           imagePullPolicy: IfNotPresent
-      restartPolicy: Never
+          env:
+          - name: SUBMIT_ALLURE_REPORT
+            value: "{{- .Values.job.env.SUBMIT_ALLURE_REPORT | default ("true") -}}"
+          - name: ALLURE_SERVER_URL
+            value: "{{- .Values.job.env.ALLURE_SERVER_URL | default (printf "http://%v-allure-server:%v" .Release.Name .Values.deployment.containerPort) -}}"
+          - name: DEBUG_SLEEP_BEFORE_EXIT_SECONDS
+            value: "{{- .Values.job.env.DEBUG_SLEEP_BEFORE_EXIT_SECONDS | default ("0") -}}"
   backoffLimit: 1

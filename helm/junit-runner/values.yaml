@@ -4,7 +4,10 @@ pvc:
 
 job:
   image: "ludenus/junit-runner"
-  version: "0.0.2-master-c928fe7"
+  version: "0.0.4-master-1853332-SNAPSHOT"
+  env:
+    DEBUG_SLEEP_BEFORE_EXIT_SECONDS: 600
+    SUBMIT_ALLURE_REPORT: true
 
 deployment:
   replicaCount: 1
