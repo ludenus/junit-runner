@@ -141,14 +141,14 @@ jib {
 
 gitProperties {
     failOnNoGitDirectory = false
-    keys = mutableListOf(
-        "git.commit.id",
-        "git.commit.time",
-        "git.branch",
-        "git.commit.message.full",
-        "git.commit.user.name",
-        "git.commit.id.abbrev"
-    )
+//    keys = mutableListOf(
+//        "git.commit.id",
+//        "git.commit.time",
+//        "git.branch",
+//        "git.commit.message.full",
+//        "git.commit.user.name",
+//        "git.commit.id.abbrev"
+//    )
 }
 
 tasks.withType<KotlinCompile> {
