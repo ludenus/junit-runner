@@ -2,6 +2,7 @@ package com.github.ludenus.qa.runner.command
 
 import com.github.ludenus.qa.runner.JUnit5Runner
 import com.github.ludenus.qa.runner.RecursiveRun
+import com.github.ludenus.qa.runner.Version
 import com.github.ludenus.qa.runner.config.AppConfig
 import org.apache.logging.log4j.kotlin.logger
 import org.springframework.stereotype.Component
@@ -42,10 +43,16 @@ class MainCommand(private val appConfig: AppConfig) : Callable<Int> {
 
 
     override fun call(): Int = if (!RecursiveRun.isPerformed) {
+        logGitProperties()
         JUnit5Runner(appConfig).call()
     } else {
         log.info { "prevent recursive run" }
         0
     }
 
+    fun logGitProperties() {
+        Version.gitProperties.forEach { k, v ->
+            log.info { "$k: $v" }
+        }
+    }
 }

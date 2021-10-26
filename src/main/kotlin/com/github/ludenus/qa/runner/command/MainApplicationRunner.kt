@@ -14,13 +14,9 @@ class MainApplicationRunner(val mainCommand: MainCommand, val appConfig: AppConf
 
     @Throws(Exception::class)
     override fun run(vararg args: String) {
-
         exitCode = MainCommand(appConfig).call()
-
     }
 
-    override fun getExitCode(): Int {
-        return exitCode
-    }
+    override fun getExitCode(): Int = exitCode
 
 }
