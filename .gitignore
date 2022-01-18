@@ -43,3 +43,4 @@ out/
 #####
 *.log
 /allure-2.15.0/
+/allure-results/
