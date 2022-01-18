@@ -13,7 +13,7 @@ plugins {
     kotlin("kapt") version "1.5.30"
 
     id("com.gorylenko.gradle-git-properties") version "2.2.4"
-    id("pl.allegro.tech.build.axion-release") version "1.11.0"
+    id("pl.allegro.tech.build.axion-release") version "1.13.5"
 
     id("com.google.cloud.tools.jib") version "3.1.4"
 
@@ -50,29 +50,32 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.apache.logging.log4j:log4j-api-kotlin:1.0.0")
-    implementation("org.apache.logging.log4j:log4j-api:2.14.1")
-    implementation("org.apache.logging.log4j:log4j-core:2.14.1")
+    implementation("org.apache.logging.log4j:log4j-api:2.17.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.17.1")
 
-    kapt ("info.picocli:picocli-codegen:4.6.1")
+    kapt("info.picocli:picocli-codegen:4.6.1")
     implementation("info.picocli:picocli-spring-boot-starter:4.6.1")
 
-    implementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
-    implementation("org.junit.jupiter:junit-jupiter:5.7.2")
-    implementation("io.qameta.allure:allure-junit5:2.15.0")
-
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    implementation("io.qameta.allure:allure-junit5:2.16.0")
 
     implementation("org.junit.platform:junit-platform-console:1.8.1")
     implementation("org.junit.platform:junit-platform-launcher:1.8.1")
 
+    implementation("org.ow2.asm:asm:9.2")
+    implementation("org.ow2.asm:asm-util:9.2")
 }
 
 
@@ -113,7 +116,8 @@ jib {
         image = "adoptopenjdk/openjdk11:jdk-11.0.12_7-alpine"
     }
     to {
-        image = "ludenus/${name}"
+        val dockerRegistry = project.findProperty("dockerRegistry") ?: "ludenus"
+        image = "${dockerRegistry}/${name}"
         tags = setOf("${scmVersion.version}", "latest", "${scmVersion.scmPosition.branch}")
     }
     container {
