@@ -53,19 +53,20 @@ Check sample [helm chart](helm/junit-runner) for report configuration details.
 
 ### Rebuild and run tests INSIDE docker container
 ```shell
-./gradlew clean build jibDockerBuild && docker run -e LOG_LEVEL=INFO ludenus/junit-runner:latest
+./gradlew clean compileTestKotlin && ./gradlew jibDockerBuild -x test && docker run -e APP_SELECTED_PACKAGES="qa.runner.springboottest" -e KEEP_POD_RUNNING_AFTER_TEST_ARE_DONE="false" -e LOG_LEVEL=INFO ludenus/junit-runner:latest
+
 ```
 
 ### Build docker image locally WITH docker daemon
 
 ```shell
-./gradlew clean build jibDockerBuild
+./gradlew clean compileTestKotlin && ./gradlew jibDockerBuild -x test
 ```
 
 ### Build docker image and push to docker registry WITHOUT docker daemon
 
 ```shell
-./gradlew clean build jib
+./gradlew clean compileTestKotlin && ./gradlew jib -x test
 ```
 
 ### Deploy junit-runner job along with allure server 

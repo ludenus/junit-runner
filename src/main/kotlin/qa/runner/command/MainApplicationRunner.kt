@@ -1,9 +1,9 @@
-package com.github.ludenus.qa.runner.command
+package qa.runner.command
 
-import com.github.ludenus.qa.runner.config.AppConfig
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.ExitCodeGenerator
 import org.springframework.stereotype.Component
+import qa.runner.config.AppConfig
 
 @Component
 class MainApplicationRunner(val mainCommand: MainCommand, val appConfig: AppConfig) : CommandLineRunner, ExitCodeGenerator {

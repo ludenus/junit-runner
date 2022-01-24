@@ -1,4 +1,4 @@
-package com.github.ludenus.qa.runner.validation
+package qa.runner.validation
 
 import org.apache.logging.log4j.kotlin.logger
 import java.util.*

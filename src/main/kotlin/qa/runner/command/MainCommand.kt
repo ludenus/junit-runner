@@ -1,12 +1,12 @@
-package com.github.ludenus.qa.runner.command
+package qa.runner.command
 
-import com.github.ludenus.qa.runner.JUnit5Runner
-import com.github.ludenus.qa.runner.RecursiveRun
-import com.github.ludenus.qa.runner.Version
-import com.github.ludenus.qa.runner.config.AppConfig
 import org.apache.logging.log4j.kotlin.logger
 import org.springframework.stereotype.Component
 import picocli.CommandLine
+import qa.runner.JUnit5Runner
+import qa.runner.RecursiveRun
+import qa.runner.Version
+import qa.runner.config.AppConfig
 import java.io.File
 import java.util.concurrent.Callable
 

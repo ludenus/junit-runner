@@ -1,4 +1,4 @@
-package com.github.ludenus.qa.runner.generictest
+package qa.runner.generictest
 
 import io.qameta.allure.Feature
 import io.qameta.allure.Step

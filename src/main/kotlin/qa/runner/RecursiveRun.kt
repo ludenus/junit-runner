@@ -1,4 +1,4 @@
-package com.github.ludenus.qa.runner
+package qa.runner
 
 
 //TODO: find better way to prevent recursive run

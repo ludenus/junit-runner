@@ -1,4 +1,4 @@
-package com.github.ludenus.qa.runner.validation
+package qa.runner.validation
 
 import javax.validation.Constraint
 import javax.validation.Payload
