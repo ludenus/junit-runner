@@ -12,7 +12,7 @@ plugins {
     kotlin("plugin.spring") version "1.5.21"
     kotlin("kapt") version "1.5.30"
 
-    id("com.gorylenko.gradle-git-properties") version "2.2.4"
+    id("com.gorylenko.gradle-git-properties") version "2.4.1"
     id("pl.allegro.tech.build.axion-release") version "1.13.5"
 
     id("com.google.cloud.tools.jib") version "3.1.4"
@@ -59,8 +59,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.apache.logging.log4j:log4j-api-kotlin:1.0.0")
-    implementation("org.apache.logging.log4j:log4j-api:2.17.1")
-    implementation("org.apache.logging.log4j:log4j-core:2.17.1")
+    implementation("org.apache.logging.log4j:log4j-api:2.18.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.18.0")
 
     kapt("info.picocli:picocli-codegen:4.6.1")
     implementation("info.picocli:picocli-spring-boot-starter:4.6.1")
